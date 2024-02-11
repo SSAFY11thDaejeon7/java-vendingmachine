@@ -10,6 +10,10 @@
 - 인텔리제이 자바버전 변경방법 : https://inpa.tistory.com/entry/IntelliJ-%F0%9F%92%BD-%EC%9E%90%EB%B0%94-JDK-%EB%B2%84%EC%A0%84-%EB%B3%80%EA%B2%BD-%EB%B0%A9%EB%B2%95
   - 아래 요구사항에서 JAVA 8버전을 요구해서 올립니다. 그보다 높은 버전에서도 아마 돌아갈텐데, 혹시 몰라 올려둡니다.
 
+- 스터디원 추천 자료
+  - PR 코드 리뷰 링크: https://github.com/baton-mission/java-boss-monster/pull/8
+  - 미션 코드 리포지토리: https://github.com/SehyeonKang/java-boss-monster/tree/main
+
 ## 🔍 진행방식
 
 - 미션은 **기능 요구사항, 프로그래밍 요구사항, 과제 진행 요구사항** 세 가지로 구성되어 있다.
