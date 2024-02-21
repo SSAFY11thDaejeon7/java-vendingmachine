@@ -6,18 +6,18 @@ import java.util.StringTokenizer;
 
 public class VendingMachine {
 
-    List<Product> products;
+    private final CoinBox coinBox;
+    private final ProductBox productBox;
+    private int inputAmount;
 
     public VendingMachine() {
-        products = new ArrayList<>();
+        coinBox = new CoinBox();
+        productBox = new ProductBox();
     }
 
     public void addProducts(String productsString) {
-        StringTokenizer st = new StringTokenizer(productsString, "[],;");
-        while (st.hasMoreTokens()) {
-            products.add(new Product(st.nextToken(),
-                    Integer.parseInt(st.nextToken()),
-                    Integer.parseInt(st.nextToken())));
-        }
+        productBox.addProducts(productsString);
     }
+
+
 }
