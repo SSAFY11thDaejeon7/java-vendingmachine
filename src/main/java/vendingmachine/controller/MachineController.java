@@ -21,12 +21,8 @@ public class MachineController {
 
     public void play() {
         int totalAmount = Integer.parseInt(inputView.readMachineTotalAmount());
-        RandomCoinGenerator generator = new RandomCoinGenerator();
-        Map<Integer, Integer> map = generator.generateRandomCoins(totalAmount);
-
-        for (int key : map.keySet()) {
-            System.out.println(key + "원: " + map.get(key) + "개");
-        }
+        Map<Integer, Integer> coins = vendingMachine.generateCoins(totalAmount);
+        outputView.printTotalCoins(coins);
 
         String input = inputView.readProductInfo();
         vendingMachine.addProducts(input);

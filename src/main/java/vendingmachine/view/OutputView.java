@@ -6,10 +6,10 @@ import java.util.Map;
 
 public class OutputView {
 
-    public void printTotalCoins(Map<Coin, Integer> coinInfo) {
+    public void printTotalCoins(Map<Integer, Integer> coinInfo) {
         System.out.println("자판기가 보유한 동전");
-        for (Coin coin : coinInfo.keySet()) {
-            System.out.println(coin.getAmount() + "원 - " + coinInfo.get(coin) + "개");
+        for (int coin : coinInfo.keySet()) {
+            System.out.println(coin + "원 - " + coinInfo.get(coin) + "개");
         }
     }
 
