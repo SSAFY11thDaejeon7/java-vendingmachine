@@ -24,4 +24,12 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
+
+    public boolean isEqualToName(String name) {
+        return this.name.equals(name);
+    }
+
+    public void reduceQuantity() {
+        quantity--;
+    }
 }

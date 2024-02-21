@@ -19,4 +19,21 @@ public class ProductBox {
                     Integer.parseInt(st.nextToken())));
         }
     }
+
+    public Product findProduct(String productName) {
+        for (Product product : products) {
+            if (product.isEqualToName(productName)) {
+                return product;
+            }
+        }
+
+        return null;
+    }
+
+    public int dispenseProduct(Product product) {
+        int index = products.indexOf(product);
+        Product findProduct = products.get(index);
+        findProduct.reduceQuantity();
+        return findProduct.getPrice();
+    }
 }

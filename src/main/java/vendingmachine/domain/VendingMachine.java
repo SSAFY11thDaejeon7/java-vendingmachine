@@ -8,16 +8,30 @@ public class VendingMachine {
 
     private final CoinBox coinBox;
     private final ProductBox productBox;
-    private int inputAmount;
+    private PaymentManager paymentManager;
 
     public VendingMachine() {
         coinBox = new CoinBox();
         productBox = new ProductBox();
+        paymentManager = new PaymentManager();
     }
 
     public void addProducts(String productsString) {
         productBox.addProducts(productsString);
     }
 
+    public void addInputAmount(int amount) {
+        paymentManager.addInputAmount(amount);
+    }
 
+    public int sellProduct(String productName) {
+        Product product = productBox.findProduct(productName);
+        int productPrice = productBox.dispenseProduct(product);
+        int inputAmount = paymentManager.reduceInputAmount(productPrice);
+        return inputAmount;
+    }
+
+    public int getInputAmount() {
+        return paymentManager.getInputAmount();
+    }
 }

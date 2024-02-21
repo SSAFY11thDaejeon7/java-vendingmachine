@@ -31,6 +31,12 @@ public class MachineController {
         String input = inputView.readProductInfo();
         vendingMachine.addProducts(input);
 
-        System.out.println("check");
+        int inputAmount = Integer.parseInt(inputView.readInputAmount());
+        vendingMachine.addInputAmount(inputAmount);
+
+        outputView.printInputAmount(vendingMachine.getInputAmount());
+        input = inputView.readProductToPurchase();
+        int amount = vendingMachine.sellProduct(input);
+        outputView.printInputAmount(amount);
     }
 }
