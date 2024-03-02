@@ -21,7 +21,7 @@ public class VendingMachine {
     }
 
     public SortedMap<Integer, Integer> generateCoins(int totalAmount) {
-        Validator.validateVendingMachineAmount(totalAmount);
+        Validator.validateAmount(totalAmount);
         return coinBox.generateCoins(totalAmount);
     }
 

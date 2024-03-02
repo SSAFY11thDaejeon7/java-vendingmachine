@@ -33,16 +33,22 @@ public class MachineController {
             }
         }
 
-
-        String input = inputView.readProductInfo();
-        vendingMachine.addProducts(input);
+        while (true) {
+            try {
+                String input = inputView.readProductInfo();
+                vendingMachine.addProducts(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         int inputAmount = Integer.parseInt(inputView.readInputAmount());
         vendingMachine.addInputAmount(inputAmount);
         outputView.printInputAmount(vendingMachine.getInputAmount());
 
         while (true) {
-            input = inputView.readProductToPurchase();
+            String input = inputView.readProductToPurchase();
             SellInfoDto sellInfoDto = vendingMachine.sellProduct(input);
             outputView.printInputAmount(sellInfoDto.getInputAmount());
 

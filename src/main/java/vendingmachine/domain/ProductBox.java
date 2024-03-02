@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.util.Validator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -11,8 +13,9 @@ public class ProductBox {
         products = new ArrayList<>();
     }
 
-    public void addProducts(String productsString) {
-        StringTokenizer st = new StringTokenizer(productsString, "[],;");
+    public void addProducts(String productsInfo) {
+        StringTokenizer st = new StringTokenizer(productsInfo, "[],;");
+        Validator.validateProductInfo(productsInfo);
         while (st.hasMoreTokens()) {
             products.add(new Product(st.nextToken(),
                     Integer.parseInt(st.nextToken()),
