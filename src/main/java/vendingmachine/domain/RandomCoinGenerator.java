@@ -6,6 +6,9 @@ import java.util.TreeMap;
 
 public class RandomCoinGenerator {
 
+    private static final int COIN_COUNT_ZERO = 0;
+    private static final int COIN_COUNT_ONE = 1;
+
     private SortedMap<Integer, Integer> randomCoins;
 
     public RandomCoinGenerator() {
@@ -15,16 +18,16 @@ public class RandomCoinGenerator {
 
     private void setCoins() {
         for(Coin coin : Coin.values()) {
-            randomCoins.put(coin.getAmount(), 0);
+            randomCoins.put(coin.getAmount(), COIN_COUNT_ZERO);
         }
     }
 
     public SortedMap<Integer, Integer> generateRandomCoins(int amount) {
-        while (amount > 0) {
+        while (amount > COIN_COUNT_ZERO) {
             int coin = Coin.getRandomCoin();
             if (amount >= coin) {
                 amount -= coin;
-                randomCoins.put(coin, randomCoins.get(coin) + 1);
+                randomCoins.put(coin, randomCoins.get(coin) + COIN_COUNT_ONE);
             }
         }
 

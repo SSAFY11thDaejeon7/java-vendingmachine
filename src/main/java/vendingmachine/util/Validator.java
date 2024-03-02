@@ -1,46 +1,51 @@
 package vendingmachine.util;
 
-import vendingmachine.domain.Product;
-
 import java.util.StringTokenizer;
 
 public class Validator {
 
+    private static final String PRODUCT_INFO_DELIM = "[],;";
+    private static final int AMOUNT_ZERO = 0;
+    private static final int DIVISION_TEN = 10;
+    private static final int REMAINDER_ZERO = 0;
+    private static final int QUANTITY_ZERO = 0;
+
+
     public static void validateAmount(int amount) {
-        if (amount <= 0 || amount % 10 != 0) {
-            throw new IllegalArgumentException("[ERROR] 10원으로 나누어 떨어지는 10원 이상의 금액을 입력해주세요.");
+        if (amount <= AMOUNT_ZERO || amount % DIVISION_TEN != REMAINDER_ZERO) {
+            ExceptionMessage.INVALID_AMOUNT.throwIllegalArgumentException();
         }
     }
 
     public static void validateProductInfo(String info) {
-        StringTokenizer st = new StringTokenizer(info, "[],;");
+        StringTokenizer st = new StringTokenizer(info, PRODUCT_INFO_DELIM);
         try {
             while (st.hasMoreTokens()) {
                 String productName = st.nextToken();
                 int price = Integer.parseInt(st.nextToken());
                 int quantity = Integer.parseInt(st.nextToken());
 
-                if (price <= 0 || price % 10 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 10원으로 나누어 떨어지는 10원 이상의 금액을 입력해주세요.");
+                if (price <= AMOUNT_ZERO || price % DIVISION_TEN != REMAINDER_ZERO) {
+                    ExceptionMessage.INVALID_AMOUNT.throwIllegalArgumentException();
                 }
 
-                if (quantity <= 0) {
-                    throw new IllegalArgumentException("[ERROR] 물품 개수를 1개 이상 입력해주세요.");
+                if (quantity <= QUANTITY_ZERO) {
+                    ExceptionMessage.INVALID_PRODUCT_AMOUNT.throwIllegalArgumentException();
                 }
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 가격 또는 개수를 입력해주세요.");
+            ExceptionMessage.INVALID_PRODUCT_SETTING_INFO.throwIllegalArgumentException();
         }
     }
 
     public static void validateInputAmount(String amount) {
         try {
             int inputAmount = Integer.parseInt(amount);
-            if (inputAmount <= 0) {
-                throw new IllegalArgumentException("투입 금액을 1원 이상 넣어주세요.");
+            if (inputAmount <= AMOUNT_ZERO) {
+                ExceptionMessage.INVALID_INPUT_AMOUNT.throwIllegalArgumentException();
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("투입 금액을 숫자로 입력해주세요.");
+            ExceptionMessage.INVALID_INPUT_AMOUNT_STRING.throwIllegalArgumentException();
         }
     }
 }

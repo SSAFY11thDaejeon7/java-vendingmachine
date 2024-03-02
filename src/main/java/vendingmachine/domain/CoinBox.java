@@ -1,11 +1,12 @@
 package vendingmachine.domain;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class CoinBox {
+
+    private static final int QUANTITY_ZERO = 0;
 
     private SortedMap<Integer, Integer> coins;
 
@@ -31,7 +32,7 @@ public class CoinBox {
         int coinCount = inputAmount / coinAmount;
         if (coinCount > coins.get(coinAmount)) {
             change.put(coinAmount, coins.get(coinAmount));
-            coins.put(coinAmount, 0);
+            coins.put(coinAmount, QUANTITY_ZERO);
             inputAmount -= coinAmount * coins.get(coinAmount);
             return inputAmount;
         }

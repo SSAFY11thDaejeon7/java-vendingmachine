@@ -2,6 +2,7 @@ package vendingmachine.domain;
 
 public class Product {
 
+    private static final int QUANTITY_ZERO = 0;
 
     private String name;
     private int price;
@@ -32,7 +33,7 @@ public class Product {
     public boolean reduceQuantity() {
         quantity--;
 
-        if (quantity == 0) {
+        if (quantity == QUANTITY_ZERO) {
             return true;
         }
         return false;

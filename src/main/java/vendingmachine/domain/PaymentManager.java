@@ -4,10 +4,12 @@ import java.util.SortedMap;
 
 public class PaymentManager {
 
+    private static final int INIT_AMOUNT = 0;
+
     private int inputAmount;
 
     public PaymentManager() {
-        inputAmount = 0;
+        inputAmount = INIT_AMOUNT;
     }
 
     public int getInputAmount() {

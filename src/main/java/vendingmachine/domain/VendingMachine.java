@@ -3,12 +3,12 @@ package vendingmachine.domain;
 import vendingmachine.dto.SellInfoDto;
 import vendingmachine.util.Validator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.SortedMap;
-import java.util.StringTokenizer;
 
 public class VendingMachine {
+
+    private final static boolean CHANGE_NEED_FLAG = true;
+    private final static boolean CHANGE_NO_NEED_FLAG = false;
 
     private final CoinBox coinBox;
     private final ProductBox productBox;
@@ -38,10 +38,10 @@ public class VendingMachine {
         Product product = productBox.findProduct(productName);
         int productPrice = productBox.dispenseProduct(product);
         int inputAmount = paymentManager.reduceInputAmount(productPrice);
-        sellInfoDto = new SellInfoDto(inputAmount, false);
+        sellInfoDto = new SellInfoDto(inputAmount, CHANGE_NO_NEED_FLAG);
 
         if (inputAmount < productBox.findMinimumPrice() || productBox.checkSoldOut()) {
-            sellInfoDto.setChangeNeedFlag(true);
+            sellInfoDto.setChangeNeedFlag(CHANGE_NEED_FLAG);
         }
 
         return sellInfoDto;

@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import vendingmachine.util.ExceptionMessage;
 import vendingmachine.util.Validator;
 
 import java.util.ArrayList;
@@ -7,6 +8,9 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class ProductBox {
+
+    private static final String PRODUCT_INFO_DELIM = "[],;";
+
     List<Product> products;
 
     public ProductBox() {
@@ -14,7 +18,7 @@ public class ProductBox {
     }
 
     public void addProducts(String productsInfo) {
-        StringTokenizer st = new StringTokenizer(productsInfo, "[],;");
+        StringTokenizer st = new StringTokenizer(productsInfo, PRODUCT_INFO_DELIM);
         Validator.validateProductInfo(productsInfo);
         while (st.hasMoreTokens()) {
             products.add(new Product(st.nextToken(),
@@ -30,7 +34,8 @@ public class ProductBox {
             }
         }
 
-        throw new IllegalArgumentException("구매하려는 상품이 없습니다. 상품명을 확인해주세요.");
+        ExceptionMessage.EMPTY_PRODUCT.throwIllegalArgumentException();
+        return null;
     }
 
     public int dispenseProduct(Product product) {

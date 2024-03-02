@@ -1,6 +1,5 @@
 package vendingmachine.controller;
 
-import vendingmachine.domain.RandomCoinGenerator;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.dto.SellInfoDto;
 import vendingmachine.util.Validator;
