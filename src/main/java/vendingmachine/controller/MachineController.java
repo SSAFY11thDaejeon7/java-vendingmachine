@@ -22,9 +22,17 @@ public class MachineController {
     }
 
     public void play() {
-        int totalAmount = Integer.parseInt(inputView.readMachineTotalAmount());
-        Map<Integer, Integer> coins = vendingMachine.generateCoins(totalAmount);
-        outputView.printTotalCoins(coins);
+        while (true) {
+            try {
+                int totalAmount = Integer.parseInt(inputView.readMachineTotalAmount());
+                Map<Integer, Integer> coins = vendingMachine.generateCoins(totalAmount);
+                outputView.printTotalCoins(coins);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+
 
         String input = inputView.readProductInfo();
         vendingMachine.addProducts(input);

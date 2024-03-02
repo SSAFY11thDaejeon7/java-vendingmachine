@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 import vendingmachine.dto.SellInfoDto;
+import vendingmachine.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class VendingMachine {
     }
 
     public SortedMap<Integer, Integer> generateCoins(int totalAmount) {
+        Validator.validateVendingMachineAmount(totalAmount);
         return coinBox.generateCoins(totalAmount);
     }
 
