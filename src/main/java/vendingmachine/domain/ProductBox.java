@@ -30,7 +30,7 @@ public class ProductBox {
             }
         }
 
-        return null;
+        throw new IllegalArgumentException("구매하려는 상품이 없습니다. 상품명을 확인해주세요.");
     }
 
     public int dispenseProduct(Product product) {

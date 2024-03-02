@@ -3,6 +3,7 @@ package vendingmachine.controller;
 import vendingmachine.domain.RandomCoinGenerator;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.dto.SellInfoDto;
+import vendingmachine.util.Validator;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
@@ -43,17 +44,29 @@ public class MachineController {
             }
         }
 
-        int inputAmount = Integer.parseInt(inputView.readInputAmount());
-        vendingMachine.addInputAmount(inputAmount);
+        while (true) {
+            try {
+                String inputAmount = inputView.readInputAmount();
+                Validator.validateInputAmount(inputAmount);
+                vendingMachine.addInputAmount(Integer.parseInt(inputAmount));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         outputView.printInputAmount(vendingMachine.getInputAmount());
 
         while (true) {
-            String input = inputView.readProductToPurchase();
-            SellInfoDto sellInfoDto = vendingMachine.sellProduct(input);
-            outputView.printInputAmount(sellInfoDto.getInputAmount());
+            try {
+                String input = inputView.readProductToPurchase();
+                SellInfoDto sellInfoDto = vendingMachine.sellProduct(input);
+                outputView.printInputAmount(sellInfoDto.getInputAmount());
 
-            if (sellInfoDto.isChangeNeedFlag()) {
-                break;
+                if (sellInfoDto.isChangeNeedFlag()) {
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
 

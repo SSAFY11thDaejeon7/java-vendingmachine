@@ -32,4 +32,15 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 올바른 가격 또는 개수를 입력해주세요.");
         }
     }
+
+    public static void validateInputAmount(String amount) {
+        try {
+            int inputAmount = Integer.parseInt(amount);
+            if (inputAmount <= 0) {
+                throw new IllegalArgumentException("투입 금액을 1원 이상 넣어주세요.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("투입 금액을 숫자로 입력해주세요.");
+        }
+    }
 }
