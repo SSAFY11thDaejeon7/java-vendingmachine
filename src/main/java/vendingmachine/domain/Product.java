@@ -29,7 +29,12 @@ public class Product {
         return this.name.equals(name);
     }
 
-    public void reduceQuantity() {
+    public boolean reduceQuantity() {
         quantity--;
+
+        if (quantity == 0) {
+            return true;
+        }
+        return false;
     }
 }

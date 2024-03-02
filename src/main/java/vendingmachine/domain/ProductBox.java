@@ -33,7 +33,24 @@ public class ProductBox {
     public int dispenseProduct(Product product) {
         int index = products.indexOf(product);
         Product findProduct = products.get(index);
-        findProduct.reduceQuantity();
+        boolean soldOutFlag = findProduct.reduceQuantity();
+
+        if (soldOutFlag) {
+            products.remove(index);
+        }
+
         return findProduct.getPrice();
+    }
+
+    public int findMinimumPrice() {
+        int minimumPrice = Integer.MAX_VALUE;
+        for (Product product : products) {
+            minimumPrice = Math.min(minimumPrice, product.getPrice());
+        }
+        return minimumPrice;
+    }
+
+    public boolean checkSoldOut() {
+        return products.isEmpty();
     }
 }

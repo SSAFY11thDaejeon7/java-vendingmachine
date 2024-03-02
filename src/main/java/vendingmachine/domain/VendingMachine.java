@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.dto.SellInfoDto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
@@ -29,11 +31,18 @@ public class VendingMachine {
         paymentManager.addInputAmount(amount);
     }
 
-    public int sellProduct(String productName) {
+    public SellInfoDto sellProduct(String productName) {
+        SellInfoDto sellInfoDto;
         Product product = productBox.findProduct(productName);
         int productPrice = productBox.dispenseProduct(product);
         int inputAmount = paymentManager.reduceInputAmount(productPrice);
-        return inputAmount;
+        sellInfoDto = new SellInfoDto(inputAmount, false);
+
+        if (inputAmount < productBox.findMinimumPrice() || productBox.checkSoldOut()) {
+            sellInfoDto.setChangeNeedFlag(true);
+        }
+
+        return sellInfoDto;
     }
 
     public int getInputAmount() {

@@ -2,6 +2,7 @@ package vendingmachine.controller;
 
 import vendingmachine.domain.RandomCoinGenerator;
 import vendingmachine.domain.VendingMachine;
+import vendingmachine.dto.SellInfoDto;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
@@ -30,11 +31,17 @@ public class MachineController {
 
         int inputAmount = Integer.parseInt(inputView.readInputAmount());
         vendingMachine.addInputAmount(inputAmount);
-
         outputView.printInputAmount(vendingMachine.getInputAmount());
-        input = inputView.readProductToPurchase();
-        int amount = vendingMachine.sellProduct(input);
-        outputView.printInputAmount(amount);
+
+        while (true) {
+            input = inputView.readProductToPurchase();
+            SellInfoDto sellInfoDto = vendingMachine.sellProduct(input);
+            outputView.printInputAmount(sellInfoDto.getInputAmount());
+
+            if (sellInfoDto.isChangeNeedFlag()) {
+                break;
+            }
+        }
 
         SortedMap<Integer, Integer> change = vendingMachine.generateChange();
         outputView.printChange(change);
