@@ -20,7 +20,7 @@ public class InputView {
     }
 
     public String readProductToPurchase() {
-        System.out.println("구매할 상품명을 입력해 주세요.");
+        System.out.println("\n구매할 상품명을 입력해 주세요.");
         return Console.readLine();
     }
 }

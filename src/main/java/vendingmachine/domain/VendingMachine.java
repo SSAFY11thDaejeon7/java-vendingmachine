@@ -39,4 +39,8 @@ public class VendingMachine {
     public int getInputAmount() {
         return paymentManager.getInputAmount();
     }
+
+    public SortedMap<Integer, Integer> generateChange() {
+        return paymentManager.generateChange(coinBox);
+    }
 }

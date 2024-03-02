@@ -6,6 +6,7 @@ import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
 import java.util.Map;
+import java.util.SortedMap;
 
 public class MachineController {
 
@@ -34,5 +35,8 @@ public class MachineController {
         input = inputView.readProductToPurchase();
         int amount = vendingMachine.sellProduct(input);
         outputView.printInputAmount(amount);
+
+        SortedMap<Integer, Integer> change = vendingMachine.generateChange();
+        outputView.printChange(change);
     }
 }
